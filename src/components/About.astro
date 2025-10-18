@@ -17,6 +17,8 @@
 
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <!-- ASCII Art Logo -->
+       <div class="flex flex-col gap-4">
+
       <div id="ascii-art" class="opacity-0">
         <div class="cyber-card p-8 bg-card">
           <pre class="text-primary text-xs md:text-sm font-mono leading-tight overflow-x-auto">
@@ -32,6 +34,26 @@
   &  Information Security
 `}
           </pre>
+        </div>
+      </div>
+       <div id="core-values" class="cyber-card p-6 bg-card opacity-0">
+          <div class="terminal-line text-primary mb-3">
+            Core Values
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+              Security
+            </span>
+            <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+              Innovation
+            </span>
+            <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+              Collaboration
+            </span>
+            <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+              Excellence
+            </span>
+          </div>
         </div>
       </div>
 
@@ -60,25 +82,7 @@
             </p>
           </div>
 
-          <div class="cyber-card p-6 bg-card">
-            <div class="terminal-line text-primary mb-3">
-              Core Values
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
-                Security
-              </span>
-              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
-                Innovation
-              </span>
-              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
-                Collaboration
-              </span>
-              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
-                Excellence
-              </span>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -107,6 +111,14 @@
         }
       }, 300);
       
+      // Animate core values with delay
+      setTimeout(() => {
+        const coreValues = document.getElementById('core-values');
+        if (coreValues) {
+          coreValues.classList.add('animate-slide-up');
+        }
+      }, 450);
+      
       // Animate content with delay
       setTimeout(() => {
         const content = document.getElementById('about-content');
@@ -132,12 +144,14 @@
 
 <style>
   #ascii-art,
+  #core-values,
   #about-content {
     opacity: 0;
     transform: translateY(30px);
   }
 
   #ascii-art.animate-slide-up,
+  #core-values.animate-slide-up,
   #about-content.animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
   }

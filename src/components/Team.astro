@@ -261,7 +261,7 @@ const teamData = {
       <div class="flex justify-center">
         <div class="max-w-sm">
           {teamData.coordinator.members.map((member, index) => (
-            <div class="member-card cyber-card bg-card group" data-index={index}>
+            <div class="member-card cyber-card ascii-noise bg-card group" data-index={index}>
               <div class="p-6 text-center">
                 <div class="relative mb-4 mx-auto w-24 h-24">
                   <img
@@ -314,9 +314,9 @@ const teamData = {
           <span class="terminal-line" />{teamData.core.name}
         </h3>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="flex flex-wrap justify-center gap-6">
         {teamData.core.members.map((member, index) => (
-          <div class="member-card cyber-card bg-card group" data-index={index + 1}>
+          <div class="member-card cyber-card ascii-noise bg-card group w-full sm:w-80 md:w-72 lg:w-64 xl:w-60" data-index={index + 1}>
             <div class="p-6 text-center">
               <div class="relative mb-4 mx-auto w-24 h-24">
                 <img
@@ -377,9 +377,9 @@ const teamData = {
               Year {yearGroup.year}
             </h4>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div class="flex flex-wrap justify-center gap-6">
             {yearGroup.members.map((member, memberIndex) => (
-              <div class="member-card cyber-card bg-card group" data-index={yearIndex * 10 + memberIndex}>
+              <div class="member-card cyber-card ascii-noise bg-card group w-full sm:w-80 md:w-72 lg:w-64 xl:w-60" data-index={yearIndex * 10 + memberIndex}>
                 <div class="p-6 text-center">
                   <div class="relative mb-4 mx-auto w-24 h-24">
                     <img
