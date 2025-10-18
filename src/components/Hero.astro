@@ -99,7 +99,7 @@
           <div class='text-center animate-slide-up animation-delay-600'>
             <!-- Quick Commands -->
             <div class='mb-4'>
-              <div class='text-xs text-green-400 font-mono opacity-70 mb-2'>
+              <div class='text-xs text-blue-400 font-mono opacity-70 mb-2'>
                 QUICK COMMANDS
               </div>
               <div class='flex flex-wrap justify-center gap-2 text-xs font-mono'>
@@ -113,11 +113,11 @@
 
             <!-- Scroll Indicator -->
             <div class='animate-bounce'>
-              <div class='text-green-400 text-xs font-mono tracking-wider mb-2'>
+              <div class='text-blue-400 text-xs font-mono tracking-wider mb-2'>
                 SCROLL DOWN
               </div>
               <svg
-                class='text-green-400 mx-auto'
+                class='text-blue-400 mx-auto'
                 width='20'
                 height='20'
                 viewBox='0 0 24 24'
@@ -154,9 +154,9 @@
           cursorBlink: true,
           theme: {
             background: '#0a0a0a',
-            foreground: '#00ff00',
-            cursor: '#00ff00',
-            selection: '#00ff0044'
+            foreground: '#0066ff',
+            cursor: '#0066ff',
+            selection: '#0066ff44'
           },
           fontFamily: 'Courier New, monospace',
           fontSize: 14,
@@ -322,22 +322,22 @@
       .logo-image {
         width: 80px;
         height: 80px;
-        filter: drop-shadow(0 0 15px #00ff00);
+        filter: drop-shadow(0 0 15px #0066ff);
         animation: logoGlow 3s ease-in-out infinite alternate;
         transition: all 0.3s ease;
       }
 
       .logo-image:hover {
         transform: scale(1.1);
-        filter: drop-shadow(0 0 25px #00ff00);
+        filter: drop-shadow(0 0 25px #0066ff);
       }
 
       @keyframes logoGlow {
         0% {
-          filter: drop-shadow(0 0 15px #00ff00);
+          filter: drop-shadow(0 0 15px #0066ff);
         }
         100% {
-          filter: drop-shadow(0 0 25px #00ff00) drop-shadow(0 0 35px rgba(0, 255, 0, 0.3));
+          filter: drop-shadow(0 0 25px #0066ff) drop-shadow(0 0 35px rgba(0, 102, 255, 0.3));
         }
       }
 
@@ -345,7 +345,7 @@
       .matrix-rain {
         background: linear-gradient(
           transparent 0%,
-          rgba(0, 255, 0, 0.08) 50%,
+          rgba(0, 102, 255, 0.08) 50%,
           transparent 100%
         );
         animation: matrixRain 25s linear infinite;
@@ -363,12 +363,12 @@
       /* Glitch Text Effect */
       .glitch-text {
         position: relative;
-        color: #00ff00;
+        color: #0066ff;
         text-shadow:
-          0 0 5px #00ff00,
-          0 0 10px #00ff00,
-          0 0 15px #00ff00,
-          0 0 20px #00ff00;
+          0 0 5px #0066ff,
+          0 0 10px #0066ff,
+          0 0 15px #0066ff,
+          0 0 20px #0066ff;
         animation: glitch 3s infinite;
       }
 
@@ -513,11 +513,11 @@
         margin: 0;
         font-size: 14px;
         line-height: 1.2;
-        color: #00ff00;
-        text-shadow: 0 0 10px #00ff00;
-        filter: drop-shadow(0 0 5px #00ff00);
+        color: #0066ff;
+        text-shadow: 0 0 10px #0066ff;
+        filter: drop-shadow(0 0 5px #0066ff);
         opacity: 0.6;
-        filter: drop-shadow(0 0 5px #00ff00) brightness(0.7);
+        filter: drop-shadow(0 0 5px #0066ff) brightness(0.7);
       }
 
       /* Terminal-style Title Overlay */
@@ -534,7 +534,7 @@
 
       .terminal-main-title {
         font-family: 'Orbitron', 'Share Tech Mono', 'JetBrains Mono', monospace;
-        color: #00ff00; /* Matrix green - matches theme perfectly */
+        color: #0066ff; /* Matrix green - matches theme perfectly */
         font-size: 4.5rem;
         font-weight: 700;
         letter-spacing: 0.02em;
@@ -563,11 +563,11 @@
 
       /* Skill Tags */
       .skill-tag {
-        background: rgba(0, 255, 0, 0.1);
-        border: 1px solid rgba(0, 255, 0, 0.3);
+        background: rgba(0, 102, 255, 0.1);
+        border: 1px solid rgba(0, 102, 255, 0.3);
         padding: 6px 12px;
         border-radius: 20px;
-        color: #00ff00;
+        color: #0066ff;
         font-family: 'Courier New', monospace;
         font-size: 12px;
         transition: all 0.3s ease;
@@ -575,8 +575,8 @@
       }
 
       .skill-tag:hover {
-        background: rgba(0, 255, 0, 0.2);
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        background: rgba(0, 102, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
         transform: translateY(-2px);
       }
 
@@ -585,8 +585,8 @@
       .cyber-button {
         position: relative;
         background: transparent;
-        border: 2px solid #00ff00;
-        color: #00ff00;
+        border: 2px solid #0066ff;
+        color: #0066ff;
         font-family: 'Courier New', monospace;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -598,8 +598,8 @@
       .cyber-button:hover {
         color: #000;
         box-shadow:
-          0 0 20px #00ff00,
-          inset 0 0 20px rgba(0, 255, 0, 0.1);
+          0 0 20px #0066ff,
+          inset 0 0 20px rgba(0, 102, 255, 0.1);
         transform: translateY(-2px);
       }
 
@@ -613,7 +613,7 @@
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(0, 255, 0, 0.2),
+          rgba(0, 102, 255, 0.2),
           transparent
         );
         transition: left 0.5s;
@@ -625,17 +625,17 @@
 
       /* Command Tags */
       .command-tag {
-        background: rgba(0, 255, 0, 0.1);
-        border: 1px solid rgba(0, 255, 0, 0.3);
+        background: rgba(0, 102, 255, 0.1);
+        border: 1px solid rgba(0, 102, 255, 0.3);
         padding: 4px 8px;
         border-radius: 4px;
-        color: #00ff00;
+        color: #0066ff;
         transition: all 0.2s ease;
       }
 
       .command-tag:hover {
-        background: rgba(0, 255, 0, 0.2);
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        background: rgba(0, 102, 255, 0.2);
+        box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
       }
 
     /* Terminal Window Styles */
@@ -650,11 +650,11 @@
 
     .terminal-window {
       background: #0a0a0a;
-      border: 2px solid #00ff00;
+      border: 2px solid #0066ff;
       border-radius: 12px;
       box-shadow: 
-        0 0 20px rgba(0, 255, 0, 0.3),
-        inset 0 0 20px rgba(0, 255, 0, 0.05);
+        0 0 20px rgba(0, 102, 255, 0.3),
+        inset 0 0 20px rgba(0, 102, 255, 0.05);
       overflow: hidden;
       font-family: 'Courier New', monospace;
       height: 100%;
@@ -676,8 +676,8 @@
         background: linear-gradient(
           45deg,
           transparent 48%,
-          rgba(0, 255, 0, 0.03) 49%,
-          rgba(0, 255, 0, 0.03) 51%,
+          rgba(0, 102, 255, 0.03) 49%,
+          rgba(0, 102, 255, 0.03) 51%,
           transparent 52%
         );
         pointer-events: none;
@@ -690,7 +690,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid #00ff00;
+        border-bottom: 1px solid #0066ff;
         position: relative;
         z-index: 2;
       }
@@ -748,10 +748,10 @@
     }
 
       .terminal-title {
-        color: #00ff00;
+        color: #0066ff;
         font-size: 14px;
         font-weight: 500;
-        text-shadow: 0 0 5px #00ff00;
+        text-shadow: 0 0 5px #0066ff;
       }
 
     .terminal-body {
@@ -803,17 +803,17 @@
       }
 
       .terminal-body .xterm-viewport::-webkit-scrollbar-track {
-        background: rgba(0, 255, 0, 0.1);
+        background: rgba(0, 102, 255, 0.1);
         border-radius: 4px;
       }
 
       .terminal-body .xterm-viewport::-webkit-scrollbar-thumb {
-        background: rgba(0, 255, 0, 0.3);
+        background: rgba(0, 102, 255, 0.3);
         border-radius: 4px;
       }
 
       .terminal-body .xterm-viewport::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 255, 0, 0.5);
+        background: rgba(0, 102, 255, 0.5);
       }
 
     /* Responsive adjustments */
