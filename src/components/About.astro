@@ -1,0 +1,151 @@
+---
+// About component with intersection observer and ASCII art
+---
+
+<section 
+  id="about" 
+  class="py-20 px-6 bg-gradient-dark"
+>
+  <div class="container mx-auto max-w-6xl">
+    <!-- Section Header -->
+    <div class="text-center mb-16" id="about-header">
+      <h2 class="text-4xl md:text-6xl font-bold text-primary neon-text mb-4">
+        <span class="terminal-line" />ABOUT
+      </h2>
+      <div class="w-24 h-1 bg-gradient-primary mx-auto" />
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- ASCII Art Logo -->
+      <div id="ascii-art" class="opacity-0">
+        <div class="cyber-card p-8 bg-card">
+          <pre class="text-primary text-xs md:text-sm font-mono leading-tight overflow-x-auto">
+{`
+  ███████╗ █████╗ ██╗ ██████╗
+  ██╔════╝██╔══██╗██║██╔════╝
+  ███████╗███████║██║██║     
+  ╚════██║██╔══██║██║██║     
+  ███████║██║  ██║██║╚██████╗
+  ╚══════╝╚═╝  ╚═╝╚═╝ ╚═════╝
+      
+  System Administration
+  &  Information Security
+`}
+          </pre>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div id="about-content" class="opacity-0">
+        <div class="space-y-6 font-mono">
+          <div class="cyber-card p-6 bg-card">
+            <div class="terminal-line text-secondary mb-3">
+              Mission Statement
+            </div>
+            <p class="text-muted-foreground leading-relaxed">
+              S.A.I.C. was created under the Programming Club, IIT Mandi to 
+              fulfill the need of a dedicated cell for cybersecurity and other 
+              information security related events and activities.
+            </p>
+          </div>
+
+          <div class="cyber-card p-6 bg-card">
+            <div class="terminal-line text-accent mb-3">
+              System Operations
+            </div>
+            <p class="text-muted-foreground leading-relaxed">
+              S.A.I.C. is also responsible for maintaining the public facing 
+              SNTC server that allows other clubs and students to host their 
+              websites online.
+            </p>
+          </div>
+
+          <div class="cyber-card p-6 bg-card">
+            <div class="terminal-line text-primary mb-3">
+              Core Values
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+                Security
+              </span>
+              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+                Innovation
+              </span>
+              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+                Collaboration
+              </span>
+              <span class="px-3 py-1 bg-primary/20 border border-primary text-primary text-sm rounded">
+                Excellence
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let isVisible = false;
+
+  function handleIntersection(entries: IntersectionObserverEntry[]) {
+    const [entry] = entries;
+    if (entry.isIntersecting && !isVisible) {
+      isVisible = true;
+      
+      // Animate header
+      const header = document.getElementById('about-header');
+      if (header) {
+        header.classList.add('animate-slide-up');
+      }
+      
+      // Animate ASCII art with delay
+      setTimeout(() => {
+        const asciiArt = document.getElementById('ascii-art');
+        if (asciiArt) {
+          asciiArt.classList.add('animate-slide-up');
+        }
+      }, 300);
+      
+      // Animate content with delay
+      setTimeout(() => {
+        const content = document.getElementById('about-content');
+        if (content) {
+          content.classList.add('animate-slide-up');
+        }
+      }, 600);
+    }
+  }
+
+  // Initialize intersection observer
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.3
+    });
+
+    const section = document.getElementById('about');
+    if (section) {
+      observer.observe(section);
+    }
+  });
+</script>
+
+<style>
+  #ascii-art,
+  #about-content {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  #ascii-art.animate-slide-up,
+  #about-content.animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

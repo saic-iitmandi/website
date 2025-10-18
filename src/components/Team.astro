@@ -1,0 +1,507 @@
+---
+// Team component with member cards and intersection observer
+import { Linkedin, Github, Calendar, Users } from 'lucide-react';
+
+// Team data organized by years
+const teamData = {
+  coordinator: {
+    name: "Coordinator",
+    members: [
+      {
+        name: "Abhinandan Kumar",
+        image: "https://avatars.githubusercontent.com/u/72310402?v=4",
+        linkedin: "https://www.linkedin.com/in/abhinandan-kumar-5620a2202",
+        github: "https://github.com/nandan645"
+      }
+    ]
+  },
+  core: {
+    name: "Core Team",
+    members: [
+      {
+        name: "Somit Gond",
+        image: "https://avatars.githubusercontent.com/u/62469008?v=4",
+        linkedin: "https://www.linkedin.com/in/somitgond/",
+        github: "https://github.com/somitgond/"
+      },
+      {
+        name: "Ayush Gaurav",
+        image: "https://avatars.githubusercontent.com/u/108430209?v=4",
+        linkedin: "https://www.linkedin.com/in/ayush-gaurav-11530525a/",
+        github: "https://github.com/ayush36gaurav"
+      },
+      {
+        name: "Utsav",
+        image: "https://avatars.githubusercontent.com/u/120120338?v=4",
+        linkedin: "https://www.linkedin.com/in/utsavjain246/",
+        github: "https://github.com/utsavjain246"
+      },
+      {
+        name: "Divyanshu",
+        image: "https://avatars.githubusercontent.com/u/120119971?v=4",
+        linkedin: "https://www.linkedin.com/in/divyanshu-singh-b26862224/",
+        github: "https://github.com/Dev-on-go"
+      },
+      {
+        name: "Abhijith R Nair",
+        image: "https://avatars.githubusercontent.com/u/120119933?v=4",
+        linkedin: "https://www.linkedin.com/in/abhijith-raju-nair-4216032a6",
+        github: "https://github.com/DarthBob112112"
+      },
+      {
+        name: "Pranav Shirbhate",
+        image: "https://avatars.githubusercontent.com/u/120119895?v=4",
+        linkedin: "https://www.linkedin.com/in/pranav-shirbhate-bb3280266/",
+        github: "https://github.com/PranavS1604"
+      },
+      {
+        name: "Vishnu",
+        image: "https://avatars.githubusercontent.com/u/113049129?v=4",
+        linkedin: "https://www.linkedin.com/in/vishnu-936750267/",
+        github: "https://github.com/Vishnu4712"
+      },
+      {
+        name: "Piyush Panpaliya",
+        image: "https://avatars.githubusercontent.com/u/74035501?v=4",
+        linkedin: "https://www.linkedin.com/in/piyush-panpaliya/",
+        github: "https://github.com/piyush-panpaliya"
+      },
+      {
+        name: "Piyush Dwivedi",
+        image: "https://avatars.githubusercontent.com/u/144051619?v=4",
+        linkedin: "https://www.linkedin.com/in/piyush-dwivedi-851601293/",
+        github: "https://github.com/Rimurudemon"
+      },
+      {
+        name: "Davda James",
+        image: "https://avatars.githubusercontent.com/u/151067328?v=4",
+        linkedin: "https://www.linkedin.com/in/james-davda-717b1a290",
+        github: "https://github.com/Davda-James"
+      },
+      {
+        name: "Arani Ghosh",
+        image: "https://avatars.githubusercontent.com/u/147254190?v=4",
+        linkedin: "https://www.linkedin.com/in/arani-ghosh-b64216257",
+        github: "https://github.com/AranitheOracle"
+      }
+    ]
+  },
+  alumni: {
+    name: "Mentors & Alumni",
+    years: [
+      {
+        year: "2018",
+        members: [
+          {
+            name: "Shikhar Gupta",
+            image: "images/shikhar.jpg",
+            linkedin: "https://www.linkedin.com/in/imshikhar/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2012-19",
+        members: [
+          {
+            name: "Abhishek Sharma",
+            image: "images/abhisek.jpg",
+            linkedin: "https://www.linkedin.com/in/abhishek-99/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2018-20",
+        members: [
+          {
+            name: "Abhigyan Khaund",
+            image: "images/abhigyank.jpg",
+            linkedin: "https://www.linkedin.com/in/abhigyank/",
+            github: null
+          },
+          {
+            name: "Aashish Kumar",
+            image: "images/aashish.jpeg",
+            linkedin: "https://www.linkedin.com/in/aashish-ak/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2018-21",
+        members: [
+          {
+            name: "Swapnil Rustagi",
+            image: "images/swapnil.jpeg",
+            linkedin: "https://www.linkedin.com/in/swapnilrustagi/",
+            github: null
+          },
+          {
+            name: "Vipul Sharma",
+            image: "images/vipul.jpeg",
+            linkedin: "https://www.linkedin.com/in/vsvipul/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2019-22",
+        members: [
+          {
+            name: "Milind Topno",
+            image: "https://avatars.githubusercontent.com/Milind712000",
+            linkedin: "https://www.linkedin.com/in/milind712000/",
+            github: null
+          },
+          {
+            name: "Yash Bansod",
+            image: "https://avatars.githubusercontent.com/yash-bansod",
+            linkedin: "https://www.linkedin.com/in/yash-bansod-1432a1186/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2020-23",
+        members: [
+          {
+            name: "Dhruv Pindawala",
+            image: "https://avatars.githubusercontent.com/Dhruv-Pindawala",
+            linkedin: "https://www.linkedin.com/in/dhruv-pindawala/",
+            github: null
+          },
+          {
+            name: "Divyasheel Kumar",
+            image: "https://avatars.githubusercontent.com/divyashk",
+            linkedin: "https://www.linkedin.com/in/divyasheel-kumar18/",
+            github: null
+          },
+          {
+            name: "Harnaman Kaur",
+            image: "https://avatars.githubusercontent.com/harnaman-hk",
+            linkedin: "https://www.linkedin.com/in/harnaman-kaur/",
+            github: null
+          },
+          {
+            name: "Naveen Sai",
+            image: "https://avatars.githubusercontent.com/naveensaigit",
+            linkedin: "https://www.linkedin.com/in/naveen-saisreenivas-thota/",
+            github: null
+          }
+        ]
+      },
+      {
+        year: "2021-24",
+        members: [
+          {
+            name: "Vinayak Sachan",
+            image: "https://avatars.githubusercontent.com/metavinayak",
+            linkedin: "https://in.linkedin.com/in/vinayak-sachan-83a08121b",
+            github: "https://github.com/metavinayak/"
+          },
+          {
+            name: "Gaurav Guleria",
+            image: "https://avatars.githubusercontent.com/tinytrebuchet",
+            linkedin: null,
+            github: "https://github.com/tinytrebuchet/"
+          },
+          {
+            name: "Gautam Dhulipala",
+            image: "https://avatars.githubusercontent.com/gd-codes",
+            linkedin: null,
+            github: "https://github.com/gd-codes/"
+          },
+          {
+            name: "Ritam Chakraborty",
+            image: "https://avatars.githubusercontent.com/Ritam727",
+            linkedin: null,
+            github: "https://github.com/Ritam727/"
+          },
+          {
+            name: "Vanshaj Nathani",
+            image: "https://avatars.githubusercontent.com/u/72431353?v=4",
+            linkedin: "https://in.linkedin.com/in/vanshaj-nathani-b3220324a",
+            github: "https://github.com/VanshajNathani/"
+          },
+          {
+            name: "Laxman Prasad",
+            image: "https://avatars.githubusercontent.com/u/91599432?v=4",
+            linkedin: "https://in.linkedin.com/in/laxman-prasad-80a6a7239",
+            github: "https://github.com/LaxTheMan"
+          }
+        ]
+      }
+    ]
+  }
+};
+---
+
+<section 
+  id="team" 
+  class="py-20 px-6 bg-gradient-dark"
+>
+  <div class="container mx-auto max-w-7xl">
+    <!-- Section Header -->
+    <div class="text-center mb-16" id="team-header">
+      <h2 class="text-4xl md:text-6xl font-bold text-primary neon-text mb-4">
+        <span class="terminal-line" />TEAM
+      </h2>
+      <div class="w-24 h-1 bg-gradient-primary mx-auto" />
+    </div>
+
+    <!-- Coordinator Section -->
+    <div class="mb-16">
+      <div class="flex items-center justify-center mb-8" id="coordinator-title">
+        <Users className="w-6 h-6 text-secondary mr-3" />
+        <h3 class="text-2xl font-bold text-secondary font-mono">
+          <span class="terminal-line" />{teamData.coordinator.name}
+        </h3>
+      </div>
+      <div class="flex justify-center">
+        <div class="max-w-sm">
+          {teamData.coordinator.members.map((member, index) => (
+            <div class="member-card cyber-card bg-card group" data-index={index}>
+              <div class="p-6 text-center">
+                <div class="relative mb-4 mx-auto w-24 h-24">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    class="w-full h-full rounded-full object-cover border-2 border-primary/30 group-hover:border-primary transition-colors"
+                    onerror={`this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00ff41&color=000000&size=96'`}
+                  />
+                  <div class="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                
+                <h4 class="text-lg font-mono font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {member.name}
+                </h4>
+                
+                <div class="flex justify-center space-x-4">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-muted-foreground hover:text-secondary transition-colors transform hover:scale-110"
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  )}
+                  {member.github && (
+                    <a
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Team Section -->
+    <div class="mb-16">
+      <div class="flex items-center justify-center mb-8" id="core-team-title">
+        <Users className="w-6 h-6 text-secondary mr-3" />
+        <h3 class="text-2xl font-bold text-secondary font-mono">
+          <span class="terminal-line" />{teamData.core.name}
+        </h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {teamData.core.members.map((member, index) => (
+          <div class="member-card cyber-card bg-card group" data-index={index + 1}>
+            <div class="p-6 text-center">
+              <div class="relative mb-4 mx-auto w-24 h-24">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="w-full h-full rounded-full object-cover border-2 border-primary/30 group-hover:border-primary transition-colors"
+                  onerror={`this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00ff41&color=000000&size=96'`}
+                />
+                <div class="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+              
+              <h4 class="text-lg font-mono font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                {member.name}
+              </h4>
+              
+              <div class="flex justify-center space-x-4">
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-muted-foreground hover:text-secondary transition-colors transform hover:scale-110"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
+                {member.github && (
+                  <a
+                    href={member.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Alumni Section -->
+    <div>
+      <div class="flex items-center justify-center mb-8" id="alumni-title">
+        <Calendar className="w-6 h-6 text-accent mr-3" />
+        <h3 class="text-2xl font-bold text-accent font-mono">
+          <span class="terminal-line" />{teamData.alumni.name}
+        </h3>
+      </div>
+      
+      {teamData.alumni.years.map((yearGroup, yearIndex) => (
+        <div class="mb-12">
+          <div class="flex items-center justify-center mb-6">
+            <Calendar className="w-5 h-5 text-secondary mr-2" />
+            <h4 class="text-xl font-bold text-secondary font-mono">
+              Year {yearGroup.year}
+            </h4>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {yearGroup.members.map((member, memberIndex) => (
+              <div class="member-card cyber-card bg-card group" data-index={yearIndex * 10 + memberIndex}>
+                <div class="p-6 text-center">
+                  <div class="relative mb-4 mx-auto w-24 h-24">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      class="w-full h-full rounded-full object-cover border-2 border-primary/30 group-hover:border-primary transition-colors"
+                      onerror={`this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=00ff41&color=000000&size=96'`}
+                    />
+                    <div class="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  
+                  <h4 class="text-lg font-mono font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {member.name}
+                  </h4>
+                  
+                  <div class="flex justify-center space-x-4">
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-muted-foreground hover:text-secondary transition-colors transform hover:scale-110"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                      </a>
+                    )}
+                    {member.github && (
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-muted-foreground hover:text-primary transition-colors transform hover:scale-110"
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  let isVisible = false;
+
+  function handleIntersection(entries: IntersectionObserverEntry[]) {
+    const [entry] = entries;
+    if (entry.isIntersecting && !isVisible) {
+      isVisible = true;
+      
+      // Animate header
+      const header = document.getElementById('team-header');
+      if (header) {
+        header.classList.add('animate-slide-up');
+      }
+      
+      // Animate coordinator title
+      setTimeout(() => {
+        const coordinatorTitle = document.getElementById('coordinator-title');
+        if (coordinatorTitle) {
+          coordinatorTitle.classList.add('animate-slide-up');
+        }
+      }, 300);
+      
+      // Animate core team title
+      setTimeout(() => {
+        const coreTeamTitle = document.getElementById('core-team-title');
+        if (coreTeamTitle) {
+          coreTeamTitle.classList.add('animate-slide-up');
+        }
+      }, 600);
+      
+      // Animate alumni title
+      setTimeout(() => {
+        const alumniTitle = document.getElementById('alumni-title');
+        if (alumniTitle) {
+          alumniTitle.classList.add('animate-slide-up');
+        }
+      }, 900);
+      
+      // Animate member cards with staggered delays
+      const memberCards = document.querySelectorAll('.member-card');
+      memberCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate-slide-up');
+        }, (index + 1) * 100);
+      });
+    }
+  }
+
+  // Initialize intersection observer
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1
+    });
+
+    const section = document.getElementById('team');
+    if (section) {
+      observer.observe(section);
+    }
+  });
+</script>
+
+<style>
+  .member-card {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .member-card.animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

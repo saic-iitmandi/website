@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-dark">
+    <div class="text-center px-6 max-w-2xl mx-auto">
+      <div class="mb-8">
+        <h1 class="text-8xl md:text-9xl font-bold text-primary neon-text glitch" data-text="404">
+          404
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-mono text-secondary mt-4">
+          SYSTEM ERROR
+        </h2>
+      </div>
+      
+      <div class="mb-8">
+        <p class="text-lg text-foreground font-mono">
+          <span class="text-primary">$</span> Page not found in system directory
+        </p>
+        <p class="text-sm text-muted-foreground mt-2">
+          The requested resource could not be located on this server.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <a 
+          href="/" 
+          class="inline-block cyber-card px-8 py-4 bg-primary/10 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-mono uppercase tracking-wider"
+        >
+          Return to Home
+        </a>
+        
+        <div class="text-xs text-muted-foreground font-mono">
+          <p>Error Code: 404</p>
+          <p>Timestamp: <span id="timestamp"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Set current timestamp
+  document.addEventListener('DOMContentLoaded', () => {
+    const timestampElement = document.getElementById('timestamp');
+    if (timestampElement) {
+      timestampElement.textContent = new Date().toISOString();
+    }
+  });
+</script>
+
+<style>
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @keyframes neon-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+    }
+    50% {
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+  }
+
+  .glitch {
+    animation: glitch 0.3s infinite;
+  }
+
+  .neon-text {
+    animation: neon-glow 2s ease-in-out infinite alternate;
+  }
+
+  .cyber-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .cyber-card:hover::before {
+    left: 100%;
+  }
+</style>

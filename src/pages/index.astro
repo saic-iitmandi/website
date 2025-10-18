@@ -1,11 +1,54 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Activities from '../components/Activities.astro';
+import Team from '../components/Team.astro';
+import Footer from '../components/Footer.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="SAIC - System Administration and Infosec Cell | IIT Mandi">
+  <div class="min-h-screen bg-background text-foreground">
+    <Header />
+    <main>
+      <Hero />
+      <About />
+      <Activities />
+      <Team />
+    </main>
+    <Footer />
+  </div>
 </Layout>
+
+<script>
+  // SEO and structured data
+  document.addEventListener('DOMContentLoaded', () => {
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        'System Administration and Infosec Cell (SAIC) at IIT Mandi - Cybersecurity, system administration, bug bounties, and CTF competitions. Join our hacker community!'
+      );
+    }
+
+    // Add structured data for organization
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "System Administration and Infosec Cell",
+      "alternateName": "SAIC",
+      "description": "Cybersecurity and system administration cell at IIT Mandi",
+      "url": window.location.origin,
+      "sameAs": [
+        "https://github.com/saic-iitmandi",
+        "https://www.linkedin.com/company/saic-iitmandi"
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+  });
+</script>

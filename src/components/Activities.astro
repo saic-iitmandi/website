@@ -1,0 +1,215 @@
+---
+// Activities component with intersection observer animations
+---
+
+<section 
+  id="activities" 
+  class="py-20 px-6 bg-background"
+>
+  <div class="container mx-auto max-w-6xl">
+    <!-- Section Header -->
+    <div class="text-center mb-16" id="activities-header">
+      <h2 class="text-4xl md:text-6xl font-bold text-primary neon-text mb-4">
+        <span class="terminal-line" />ACTIVITIES
+      </h2>
+      <div class="w-24 h-1 bg-gradient-primary mx-auto mb-6" />
+      <p class="text-muted-foreground font-mono max-w-2xl mx-auto">
+        SAIC is responsible for sponsoring and organizing the following events.
+      </p>
+    </div>
+
+    <!-- Activities Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+      <!-- Cyber Security -->
+      <div class="activity-card cyber-card group relative overflow-hidden bg-card" data-index="0">
+        <!-- Background Image -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+          style="background-image: url('/cybersecurity.jpg');"
+        />
+        <div class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors duration-300" />
+        
+        <!-- Content -->
+        <div class="relative z-10 p-8 h-64 flex flex-col justify-between">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="text-primary animate-glow-pulse w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <h3 class="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              Cyber Security
+            </h3>
+          </div>
+          
+          <p class="text-muted-foreground font-mono text-sm leading-relaxed group-hover:text-foreground transition-colors">
+            Advanced security protocols and vulnerability assessments
+          </p>
+          
+          <!-- Terminal Prompt -->
+          <div class="mt-4 font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="text-secondary">$</span> ./execute_cyber_security.sh
+          </div>
+        </div>
+
+        <!-- Hover Border Effect -->
+        <div class="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300" />
+      </div>
+
+      <!-- System Administration -->
+      <div class="activity-card cyber-card group relative overflow-hidden bg-card" data-index="1">
+        <!-- Background Image -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+          style="background-image: url('/server-admin.jpg');"
+        />
+        <div class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors duration-300" />
+        
+        <!-- Content -->
+        <div class="relative z-10 p-8 h-64 flex flex-col justify-between">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="text-secondary animate-glow-pulse w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+            </svg>
+            <h3 class="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              System Administration
+            </h3>
+          </div>
+          
+          <p class="text-muted-foreground font-mono text-sm leading-relaxed group-hover:text-foreground transition-colors">
+            Infrastructure management and server optimization
+          </p>
+          
+          <!-- Terminal Prompt -->
+          <div class="mt-4 font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="text-secondary">$</span> ./execute_system_administration.sh
+          </div>
+        </div>
+
+        <!-- Hover Border Effect -->
+        <div class="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300" />
+      </div>
+
+      <!-- Bug Bounties -->
+      <div class="activity-card cyber-card group relative overflow-hidden bg-card" data-index="2">
+        <!-- Background Image -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+          style="background-image: url('/bug-bounty.jpg');"
+        />
+        <div class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors duration-300" />
+        
+        <!-- Content -->
+        <div class="relative z-10 p-8 h-64 flex flex-col justify-between">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="text-accent animate-glow-pulse w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            <h3 class="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              Bug Bounties
+            </h3>
+          </div>
+          
+          <p class="text-muted-foreground font-mono text-sm leading-relaxed group-hover:text-foreground transition-colors">
+            Ethical hacking and vulnerability discovery programs
+          </p>
+          
+          <!-- Terminal Prompt -->
+          <div class="mt-4 font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="text-secondary">$</span> ./execute_bug_bounties.sh
+          </div>
+        </div>
+
+        <!-- Hover Border Effect -->
+        <div class="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300" />
+      </div>
+
+      <!-- Capture the Flag -->
+      <div class="activity-card cyber-card group relative overflow-hidden bg-card" data-index="3">
+        <!-- Background Image -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+          style="background-image: url('/ctf.jpg');"
+        />
+        <div class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors duration-300" />
+        
+        <!-- Content -->
+        <div class="relative z-10 p-8 h-64 flex flex-col justify-between">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="text-primary animate-glow-pulse w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+            </svg>
+            <h3 class="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+              Capture the Flag
+            </h3>
+          </div>
+          
+          <p class="text-muted-foreground font-mono text-sm leading-relaxed group-hover:text-foreground transition-colors">
+            Competitive cybersecurity challenges and tournaments
+          </p>
+          
+          <!-- Terminal Prompt -->
+          <div class="mt-4 font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+            <span class="text-secondary">$</span> ./execute_capture_the_flag.sh
+          </div>
+        </div>
+
+        <!-- Hover Border Effect -->
+        <div class="absolute inset-0 border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let isVisible = false;
+
+  function handleIntersection(entries: IntersectionObserverEntry[]) {
+    const [entry] = entries;
+    if (entry.isIntersecting && !isVisible) {
+      isVisible = true;
+      
+      // Animate header
+      const header = document.getElementById('activities-header');
+      if (header) {
+        header.classList.add('animate-slide-up');
+      }
+      
+      // Animate activity cards with staggered delays
+      const activityCards = document.querySelectorAll('.activity-card');
+      activityCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate-slide-up');
+        }, index * 200);
+      });
+    }
+  }
+
+  // Initialize intersection observer
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.2
+    });
+
+    const section = document.getElementById('activities');
+    if (section) {
+      observer.observe(section);
+    }
+  });
+</script>
+
+<style>
+  .activity-card {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .activity-card.animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
