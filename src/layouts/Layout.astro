@@ -2,9 +2,17 @@
 import "../styles/global.css";
 export interface Props {
   title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
 }
 
-const { title = "SAIC-IIT Mandi" } = Astro.props;
+const { 
+  title = "SAIC-IIT Mandi", 
+  description = "Student Association for Information and Cybersecurity at IIT Mandi. Join us in exploring cybersecurity, ethical hacking, and information security through workshops, competitions, and community events.",
+  image = "/matrix-bg.jpg",
+  url = "https://saic.iitmandi.ac.in"
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -13,8 +21,17 @@ const { title = "SAIC-IIT Mandi" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="SAIC Application" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
     <title>{title}</title>
 
   </head>
