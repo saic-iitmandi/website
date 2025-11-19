@@ -136,6 +136,8 @@
     </div>
 
     <script>
+      import { VirtualFileSystem } from '../lib/terminal-vfs';
+
       // Initialize terminal when DOM is ready
       document.addEventListener('DOMContentLoaded', () => {
         const terminalElement = document.getElementById('terminal')
@@ -146,6 +148,8 @@
           console.error('Terminal class not found. Make sure xterm.js is loaded.')
           return
         }
+
+        const vfs = new VirtualFileSystem();
 
         // Initialize terminal with responsive sizing
         const term = new (window as any).Terminal({
@@ -168,27 +172,26 @@
 
         // Welcome message
         term.write('Welcome to the SAIC CyberSec Terminal.\r\n')
-        term.write("Type 'help' to get started.\r\n\n> ")
+        term.write("Type 'help' to get started.\r\n\n")
+        term.write(vfs.getPrompt())
 
         let buffer = ''
 
-        const commands: Record<string, (arg?: string) => string> = {
+        const commands: Record<string, (args: string[]) => string> = {
           help: () =>
-            'Available commands:\r\nwhoami, ls, cat, nmap, clear, banner, hack, status',
+            'Available commands:\r\nwhoami, ls, cd, cat, pwd, find, nmap, clear, banner, hack, status',
           whoami: () => 'root@saic-cybersec',
-          ls: () => 'README.txt  members.txt  flag.txt  exploits/  tools/  secrets/',
-          cat: (arg?: string) => {
-            if (arg === 'README.txt')
-              return 'Welcome to SAIC CyberSec Club.\r\nWe hack. We learn. We defend.\r\nEthical hacking at IIT Mandi.'
-            if (arg === 'members.txt')
-              return 'SAIC Core Team Members:\r\n\r\nCoordinator:\r\n- Abhinandan Kumar\r\n\r\nCore Team:\r\n- Somit Gond\r\n- Ayush Gaurav\r\n- Utsav\r\n- Divyanshu\r\n- Abhijith R Nair\r\n- Pranav Shirbhate\r\n- Vishnu\r\n- Piyush Panpaliya\r\n- Piyush Dwivedi\r\n- Davda James\r\n- Arani Ghosh\r\n\r\n'
-            if (arg === 'flag.txt')
-              return 'SAIC{w3lc0m3_70_541c}'
-            
-            return `cat: ${arg || 'file'}: No such file`
+          ls: (args) => vfs.ls(args),
+          cd: (args) => {
+              const res = vfs.cd(args[0]);
+              // Update prompt is handled in the main loop by calling vfs.getPrompt()
+              return res;
           },
-          nmap: (arg?: string) =>
-            `Scanning ${arg || '127.0.0.1'}...\r\nHost is up (0.001s latency).\r\nAll 1000 scanned ports are filtered.`,
+          cat: (args) => vfs.cat(args),
+          pwd: () => vfs.getPwd(),
+          find: (args) => vfs.find(args[0]),
+          nmap: (args) =>
+            `Scanning ${args[0] || '127.0.0.1'}...\r\nHost is up (0.001s latency).\r\nAll 1000 scanned ports are filtered.`,
           hack: () =>
             'Initiating penetration test...\r\nTarget acquired.\r\nVulnerability found: CVE-2024-1337\r\nAccess granted. Welcome to the matrix.',
           status: () =>
@@ -206,30 +209,73 @@
           clear: () => {
             term.clear()
             return ''
-          }
+          },
+          rm: () => 'Permission denied',
+          mkdir: () => 'Permission denied',
+          touch: () => 'Permission denied',
+          trash: () => 'Permission denied',
+          sudo: () => 'user is not in the sudoers file.  This incident will be reported.'
         }
 
         const handleInput = (key: string) => {
-          if (key === '\r') {
+          if (key === '\r') { // Enter
             term.write('\r\n')
-            const [cmd, ...args] = buffer.trim().split(' ')
+            const parts = buffer.trim().split(/\s+/)
+            const cmd = parts[0]
+            const args = parts.slice(1)
+            
             if (cmd) {
-              const result =
-                commands[cmd]?.(args.join(' ')) ||
-                `Unknown command: ${cmd}. Type 'help' for available commands.`
-              term.writeln(result)
+              const commandFn = commands[cmd]
+              if (commandFn) {
+                  const result = commandFn(args)
+                  if (result) term.writeln(result)
+              } else {
+                  term.writeln(`Unknown command: ${cmd}. Type 'help' for available commands.`)
+              }
             }
             buffer = ''
-            term.write('\r\n> ')
-          } else if (key === '\u007F') {
-            // Backspace
+            term.write(vfs.getPrompt())
+          } else if (key === '\u007F') { // Backspace
             if (buffer.length > 0) {
               buffer = buffer.slice(0, -1)
               term.write('\b \b')
             }
+          } else if (key === '\t') { // Tab
+             // Prevent default tab behavior if possible (though here we are just receiving the key)
+             // We need to implement completion
+             const completions = vfs.getCompletions(buffer);
+             if (completions.length === 1) {
+                 // Auto-complete
+                 const completion = completions[0];
+                 // We need to append the remainder of the completion to the buffer and write it
+                 // The completion returned by getCompletions is the full name of the match
+                 // We need to find what the user typed partially
+                 const tokens = buffer.split(' ');
+                 const lastToken = tokens[tokens.length - 1];
+                 const lastSlashIndex = lastToken.lastIndexOf('/');
+                 let partialName = lastToken;
+                 if (lastSlashIndex !== -1) {
+                     partialName = lastToken.substring(lastSlashIndex + 1);
+                 }
+                 
+                 const suffix = completion.substring(partialName.length);
+                 buffer += suffix;
+                 term.write(suffix);
+             } else if (completions.length > 1) {
+                 // Show possibilities
+                 term.write('\r\n');
+                 term.writeln(completions.join('  '));
+                 term.write(vfs.getPrompt() + buffer);
+             }
+          } else if (key.charCodeAt(0) === 27) {
+              // Handle arrow keys if needed, but xterm handles some. 
+              // For simple input, we ignore complex sequences or implement history later.
           } else {
-            buffer += key
-            term.write(key)
+            // Printable characters
+            if (key >= ' ' && key <= '~') {
+                buffer += key
+                term.write(key)
+            }
           }
         }
 
